@@ -1,0 +1,304 @@
+\documentclass[/Users/zhangwusheng/Documents/satz von radon nikodym/satz von radon nikodym.tex]{subfiles}
+\begin{document}
+\section{Maß mit Dichten- Satz von Radon-Niodym}
+    Es sei beliebiger Maßraum $(\omega, \mathcal{A}, \mu)$ und sei $f$ eine meßbare nichtnegative oder integrierbare Funktion
+    auf $\omega$. 
+    In diesem Kapital wollen wir uns das Verhalten dieses Integrals in Abhängigkeit von jedem Menge $A \in \mathcal{A}$ interessieren.
+
+    \begin{theorem}\label{satz:4}
+        Für jede nichtnegative Funktion $f$ wird durch 
+        \[v(A) = \int_A f\,\mathrm{d}\mu\]
+        ein Maß auf $A \in \mathcal{A}$ definiert.
+    \end{theorem}
+
+    \begin{proof}
+        Es ist $v(\emptyset)=0$ und $v \geq 0$. Nun zeigen wir, $v$ abzählbare Aktivität folgt. Für jede Folge $(A_{n})_{n \in \mathbb{N}}$ 
+        paarweise fremder Mengen aus $\mathcal{A}$ mit 
+        $A = \cup_{n=1}^\infty A_{n}$ gilt 
+        \[\mathbbm{1}_{A} f = \sum_{n=1}^\infty \mathbbm{1}_{A_n} f\]
+        und aus Satz von der monotonen Konvergenz, folgt 
+        \[v(A) = \sum_{n=1}^\infty v(A_n).\]
+        Also ein Maß auf $\mathcal{A}$. 
+    \end{proof}
+
+    \begin{mdframed}[style=mdfexample]
+        \begin{definition}
+            Ist $f$ eine nichtnegative, $\mathcal{A}$-messbare Funktion auf $\Omega$, so heißt das durch \cref{satz:4} auf $\mathcal{A}$ 
+            definierte Maß $v$ das \textit{Maß mit der Dichte $f$} bezüglich $\mu$. Es wird auch mit 
+            \[v = f\mu\]
+            bezeichnet.
+        \end{definition}
+    \end{mdframed}
+    Über den Zusammenhängzwischen $\mu$ und $v$ wollen wir die folgende Eingenschften zeigen.
+
+    \begin{theorem}\label{satz:5}
+        Für je zwei $\mathcal{A}$-messbare Funktion $f, g$ gilt 
+        \[f = g\, \text{$\mu$-fast überall}\, \Longrightarrow f\mu = g\mu.\]
+        Ist $f$ oder $g \mu$-integrierbar, so gilt auch die Umkehrung.
+    \end{theorem}
+
+    Bevor wir diese Aussage beweisen, zurest müssen wir die folgende Lemma beweisen.
+    
+    \begin{lemma}\label{lem:6}
+        Für jede nichtnegative $\mathcal{A}$-messbare Funktion $f$ auf $\Omega$, gilt 
+        \[\int f\,\mathrm{d}\mu \Longleftrightarrow f=0\, \text{$\mu$-fast überall}.\]
+    \end{lemma}
+
+    \begin{proof}
+        Wegen der Meßbarkeit von $f$ liegt die Menge 
+        \[N = \{f \neq 0\} = \{f > 0\}\]
+        in $\mathcal{A}$ und wir zeigen, 
+        \[\int f\,\mathrm{d}\mu \Longleftrightarrow \mu(N)=0.\]
+        Sei $\int f\,\mathrm{d}\mu = 0$. Sei die Folge $A_n = \{f \geq n^{-1}\}, n \in \mathbb{N}$ der Mengen liegt in $\mathcal{A}$,
+        und es gilt $A_n \uparrow N$. Wegen $\mu(N) = \lim \mu(A_n)$, zeigen wir also $\mu(A_n) =0$ für alle $n$. Dann gilt $f \geq n^{-1} \mathbbm{1}_{A_n}$
+        und somit 
+        \[0 = \int f\,\mathrm{d}\mu \geq n^{-1}\mu(A_n) \geq 0,\]
+        also gilt $\mu(N) =\lim \mu(A_n) =0$.\\
+        Sei umgekehrt. Sei $\mu(N)=0$. Für jede Folge der Funktionen $u_n = n \mathbbm{1}_N, n \in \mathbb{N}$ und ist $\int u_n\,\mathrm{d}\mu =0$.
+        Setzen wir also $g = \sup{u_n}$, so folgt $u_n \uparrow g$ und aus Satz von der monotonen Konvergenz folgt 
+        $\int g\,\mathrm{d}\mu = \sup \int u_n\,\mathrm{d}\mu=0$. Schließlich ist $f \leq g$ und damit 
+        \[0 \leq \int f\,\mathrm{d}\mu \leq \int g\,\mathrm{d}\mu \leq 0,\]
+        also gilt $\int f\,\mathrm{d}\mu = 0$.  
+    \end{proof}
+
+    \textbf{Beweis \cref{satz:5}}
+    \begin{proof}
+        Mit $f$ und $g$ stimmen für jede Menge $A \in \mathcal{A}$ auch die Funktionen 
+        $\mathbbm{1}_{A} f$ und $\mathbbm{1}_{A} g$ stimmen fast überall herein. Folglich gilt 
+        \[\int_A f\,\mathrm{d}\mu = \int_A g\,\mathrm{d}\mu.\]
+        für alle $A \in \mathcal{A}$, also gilt $f\mu = g\mu$.\\
+        Zeigen wir die Umkehrung. Sei $f$ $\mu$-integrierbar und $f\mu = g\mu$. Wegen $g \geq 0$ und 
+        $\int g\,\mathrm{d}\mu = \int f\,\mathrm{d}\mu < \infty$, ist $g$ auch $\mu$-integrierbar.\\ 
+        Wir zeigen, dass die in $\mathcal{A}$ gelegte Menge
+        \[N = \{f > g\}\]
+        eine $\mu$-Nullmenge ist.\\
+        Für alle $\omega \in N$ ist die Funktion $h(\omega) = f(\omega) - g(\omega)$ definiert und $h > 0$. 
+        Also ist die Definition 
+        \[h= \mathbbm{1}_{N} f - \mathbbm{1}_N g\]
+        sinnvoll. Wegen $\mathbbm{1}_N f \leq f$ und $\mathbbm{1}_N g\leq g$ sind auch die Funktionen 
+        $\mathbbm{1}_N f$ und $\mathbbm{1}_N g$ $\mu$-integrierbar. Wegen $f\mu = g\mu$ besitzen die beiden Funktionen
+        dassselbe $\mu$-Integral, d.h.
+        \[\int h\,\mathrm{d}\mu = \int_{N} f\,\mathrm{d}\mu - \int_N g\,\mathrm{d}\mu = 0.\]
+        Heraus folgt $\mu(h) = 0$, wegen \cref{lem:6}, da $N = \{h > 0\}$ gilt.  
+    \end{proof}
+    Nun kommen wir zu dem angeküngiten Hauptproblem: Auf der Maßraum $(\Omega, \mathcal{A})$ seien zwei Maße $\mu$ und $v$ 
+    gegeben. Wie man entscheiden kann, ob $v$ eine Dichte bezüglich $\mu$ besitzt. Notwendig hierfür ist die Bedingung, 
+    dass jede $\mu$-Nullmenge $A \in \mathcal{A}$ auch eine $v$-Nullmenge ist.
+    
+    \begin{mdframed}[style=mdfexample]
+        \begin{definition}
+            Sei $(\Omega, \mathcal{A}, \mu)$ ein Maßraum und $v$ ein Maß auf $\mathcal{A}$. Dann heißt $v$ \textit{absolut stetig} 
+            bezüglich $\mu$, kurz: $\mu$-stetig, wenn jede $\mu$-Nullmenge auf $\mathcal{A}$ auch eine $v$-Nullmenge ist. Man schreibt dafur $v \ll \mu$.
+        \end{definition}
+    \end{mdframed}
+    Wir wollen sehen, wie der Begriff der Absolutstetigkeit von Maßen mit dem Begriff der Stetigkeit von Funktionen zusammenhängt. 
+    Die nächste Behauptung läßt bereits eine Ähnlichkeit mit der Stetigkeit von Funktionen erahnen. 
+
+    \begin{theorem}
+        Gegeben seien endliche Maße $\mu$ und $v$ auf einem Maßraum $(\Omega, \mathcal{A})$, und $v$ ist genau dann $\mu$-stetig, wenn zu jeder Zahl $\varepsilon > 0$ exsistiert eine Zahl $\delta > 0$, dass 
+        \[\mu(A)\leq \delta \Longrightarrow v(A) \leq \varepsilon,\]
+        für alle $A \in \mathcal{A}$ gilt. 
+    \end{theorem} 
+    
+    \begin{proof}
+        Aus der Bedingung folgt $v(A) \leq \varepsilon$ für jedem Nullmenge $A \in \mathbb{A}$. Dann gilt $v(A)=0$ und somit ist $v$ ein $\mu$-stetiges Maß.\\
+        Umgekehrt. Zeigen wir, dass $v$ kein $\mu$-stetiges Maß, wenn die Bedingung nicht erfüllt. Es gibt ein $\varepsilon > 0$ und eine Folge $(A_n)_{n \in \mathbb{N}}$ mit den Eingenschften
+        \[\mu(A_n) \leq 2^{-n} \text{and}\, v(A_n) > \varepsilon.\]
+        Setzen wir 
+        \[A = \limsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \bigcup_{m=n}^\infty A_m,\]
+        so für diese Menge aus $\mathcal{A}$ gilt 
+        \[\mu(A)\leq \mu\bigl(\bigcup_{m=n}^\infty A_m\bigr) \leq \sum_{m=n}^\infty A_m \leq \sum_{m=n}^\infty 2^{-m} = 2^{-n+1}.\]
+        also $\mu(A) =0$, wenn $n \rightarrow \infty$. Andererseits wegen der Endlichkeit von $v$ gilt  
+        \[v(A) =v(\limsup_{n \to \infty} A_n) \geq \limsup_{n \to \infty} v(A_n) \geq \varepsilon > 0,\]
+        gemäß der Lemma von Fatou.  Das Maß $v$ daher ist nicht $\mu$-stetig.
+    \end{proof}
+
+    Wie bereits angeküngit, ergibt sich die Beantwortung der wichtigen Frage.
+
+    \begin{mdframed}[style=mdfexample]
+        \begin{theorem}[Satz von Radon-Nikodym]\label{satz:6}
+            Sei $(\Omega, \mathcal{A})$ ein Maßraum, und gegeben seien $\mu$ $\sigma$-endliche Maße auf $\mathcal{A}$ mit $v \ll \mu$. 
+            Dann gibt es eine nichtnegative $\mathcal{A}$-messbare Funktion $f$ mit
+            \[v(A) = \int_{A} f\,\mathrm{d}\mu\]
+            für alle $A \in \mathcal{A}$.
+            Die Funktion $f$ ist eindeutig bestimmt, d.h. Ist $\tilde{f}$ eine weitere Dichte von $v$ bezüglich $\mu$,
+            so gilt $f = \tilde{f}$ $\mu$-fast überall, mit $\mu(\{f \neq \tilde{f}\}) = 0$.
+        \end{theorem}
+    \end{mdframed}
+
+    \begin{remark}
+        Man kann in \cref{satz:6} auf die Voraussetzung der $\sigma$-Endlichkeit von $v$ verzichten, allerdings ist $f$ dann eine nicht mehr reellwertige Funktion.  
+    \end{remark}
+
+    \begin{example}
+        Sei $I=[0,1]$ und $\mathcal{A}$ die $\sigma$-Algebra aller Teilmengen in $I$, für welche entweder $A$ oder $A^{\mathrm{c}}$ abzählbar
+        ist. Seien $v$ ein Lesbegue Maß auf $\mathcal{A}$ und $\mu$ das Zählmaß auf $\mathcal{A}$. Dann $\emptyset$ ist die einzige Nullmenge, und somit $v$ trivialerweise $\mu$-stetig. Aber kann 
+        $v$ keine Dichte bezüglich $\mu$ besitzen. Aus $v=f \mu$ mit $f \in L^1(\mu)$ würde nämlich für welche $\omega \in I$ folgen:
+        \[0= v(\{\omega\})= \int_{\{\omega\}} f\,\mathrm{d}\mu = f(\omega) \mu(\{\omega\}) = f(\omega) \cdot 1 = f(\omega),\]
+        d.h. $f$ genau 0 ist. Jedoch folgt 
+        \[1= v(I) = \int_{I} f\,\mathrm{d}\mu = \int_I 0\,\mathrm{d}\mu = 0.\]
+        Widerspruch!
+    \end{example}
+
+    \begin{remark}
+        Mann kann in \cref{satz:6} die Voraussetzung der absolute stetigkeit auf $v$ bezüglich $\mu$ nicht verzichten.
+    \end{remark}
+
+    \begin{example}
+        Sei $I=[0,1]$ und $\mathcal{A}$ die $\sigma$-Algebra aller Teilmengen in $I$. Sei $v$ ein Lesbegue Maß. Betrachten wir das Maß $\mu$ mit 
+        \[\mu(E) = \#(E \cap \mathbb{Q})\]
+        für alle $E \in I$, d.h. $\mu$ nimmt die Anzahl der rationalen Elementen in Menge $E$ und bzw. $\mu(E)=0$ wie sonst. Wegen $\mathbb{Q}=\{r_n\}_{n=1}^\infty$, erhalten wir
+        \[[0,1]=([0,1] \cap (I \setminus \mathbb{Q})) \cup \bigcup_{n=1}^\infty r_{n}.\]
+        Dann folgt $\mu$ ein nichnegatives $\sigma$-endliches Maß. Jedoch erhalten wir  
+        \[\mu(I \setminus \mathbb{Q})= 0,\]
+        und 
+        \[v(I \setminus \mathbb{Q}) = 1,\]
+        und somit ist $v$ nicht $\mu$-stetig. Wäre $v= f\mu$ mit $f \in L^1(\mu)$, dann erhalten wir
+        \[0= v(\{\omega\})=\int_{\{\omega\}} f\,\mathrm{d}\mu = f(\omega)\mu(\{\omega\}) =f(\omega),\]
+        also $f(\omega)=0$ für aller $\omega \in \mathbb{Q}$. Dann aber Wäre $v=0$, was falsch ist. 
+    \end{example}
+
+    \textbf{Beweis \cref{satz:6}:}
+    \begin{proof}
+        Wir unterscheiden den zwei Fälle.\\
+        \textit{Fall 1}. Wir beschränken uns auf den Fall endlicher Maße $\mu$ und $v$.\\
+        \textit{Schritt 1}. Zuerst betrachten wir 
+        das Funktionensystem aller $\mathcal{A}$-messbaren Funktionen $g$ mit 
+        \[\mathfrak{G} = \Bigl\{g \geq 0 \Bigl|\, \forall A \in \mathcal{A}, \int g\,\mathrm{d}\mu \leq v(A)\Bigr\}.\]
+        Da $g \equiv 0$ zu $\mathfrak{G}$ gehört, so dass $\mathfrak{G}$ nicht leer ist.\\
+        \textit{Schritt 2}. Wir vermuten, dass $\mathfrak{G}$ maximales Element enthält und dieses die geforderten Eigenschaften erfüllt.\\
+        Setzen wir nun
+        \[\alpha = \sup_{g \in \mathfrak{G}} \int g\,\mathrm{d}\mu.\]
+        Man beachten, dass das Supremum endlich ist, weil $v$ endlich ist, d.h. 
+        \[\alpha = \sup_{g \in \mathfrak{G}} \int_{\Omega} g\,\mathrm{d}\mu \leq v(\Omega) < \infty.\]
+        Es gibt eine Folge der $\mathcal{A}$-messbaren Funktionen $(\tilde{g}_n)_{n \in \mathbb{N}} \in \mathfrak{G}$ mit 
+        \[\lim_{n \to \infty} \int_{\Omega} \tilde{g}_n\,\mathrm{d}\mu = \sup_{g \in \mathfrak{G}} \int_{\Omega} g\,\mathrm{d}\mu.\]
+        Nun setzen wir auch eine Folge 
+        \[g_n = \max_{1 \geq j \geq n}{(\tilde{g}_j)},\]
+        für die wegen $\tilde{g}_n \leq g_n$ die Relation 
+        \[\int \tilde{g}_n\,\mathrm{d}\mu \leq \int g_n\,\mathrm{d}\mu\]
+        gelten. 
+        Nun zeigen wir, dass mit zwei Funktionen $g_1$ und $g_2$ auch deren Maximum zu $\mathfrak{G}$ gehört. Hier setzen wir die Menge $A_1 = \{g_1 \geq g_2\}$ und 
+        $A_1 = {A_1}^{\mathrm{c}}$. Dann ergibt sich für jedes $A \in \mathcal{A}$ zu die folgende Umgleichung 
+        \begin{align*} 
+            \int_A \max{(g_1, g_2)}\,\mathrm{d}\mu &= \int_{A \cap A_1} \max{(g_1, g_2)}\,\mathrm{d}\mu + \int_{A \cap A_2} \max{(g_1, g_2)}\,\mathrm{d}\mu\\
+            &= \int_{A \cap A_1} g_1\,\mathrm{d}\mu + \int_{A \cap A_2} g_2\,\mathrm{d}\mu\\
+            &\leq v(A \cap A_1) + v(A \cap A_2)\\
+            &=v(A)
+        \end{align*}
+        Mit Induktion beweisen wir, dass $g_n$ in $\mathfrak{G}$ gehört.\\
+        \textit{Schritt 3}. Dann zeigen wir, dass die Funktion $f \in \mathfrak{G}$ existiert mit   
+        \[\int_{\omega} f\,\mathrm{d}\mu = \lim_{n \to \infty}\int_{\Omega} g_n\,\mathrm{d}\mu\]
+        Da $(g_n)_{n \in \mathbb{N}}$ die monoton wachsende Folge und  
+        \[g_n \uparrow f\]
+        für eine gewisse messbare Funktion $f \geq 0$. Wir zeigen, dass $f \in \mathfrak{G}$ gilt. Für beliebiges $A \in \mathcal{A}$, wegen $\mathbbm{1}_{A} g_n \uparrow \mathbbm{1}_A f$ mit dem Satz von der
+        monotonen Konvergenz folgt 
+        \[\int_A f\,\mathrm{d}\mu = \lim_{n \to \infty} g_n\,\mathrm{d}\mu.\]
+        Wegen $(g_n)_{n \in \mathbb{N}}$ in $\mathfrak{G}$ enthält, ist das Integral von $f$ nach oben beschränkt, d.h. 
+        \[\int_A f\,\mathrm{d}\mu \geq v(A) < \infty,\]
+        und somit $f$ in $\mathfrak{G}$ gehört\\
+        \textit{Schritt 4}. Dann zeigen wir, dass 
+        \[\int_{\Omega} f\,\mathrm{d}\mu = \int_{\omega} g\,\mathrm{d}\mu.\]
+        Wegen $f \in \mathfrak{G}$ gilt  
+        \[\int_{\Omega} f\,\mathrm{d}\mu \leq \int_{\Omega} g\,\mathrm{d}\mu.\]
+        Andererseits wegen $g_n \geq \tilde{g}_n$, folgt 
+        \[\int_{\Omega} f\,\mathrm{d}\mu = \lim_{n \to \infty} g_n\,\mathrm{d}\mu \geq \lim_{n \to \infty} \tilde{g}_n\,\mathrm{d}\mu = \sup_{g \in \mathfrak{G}} \int_{\Omega} g\,\mathrm{d}\mu,\]
+        d.h. 
+        \[\int_{\Omega} f\,\mathrm{d}\mu \geq \sup_{g \in \mathfrak{G}} \int_{\Omega} g\,\mathrm{d}\mu.\]
+        Folglich wegen 
+        \[\int_{\omega} f\,\mathrm{d}\mu = \int_{\omega} g\,\mathrm{d}\mu\]
+        gilt das Funktionensystem $\mathfrak{G}$ ein maximales Element enthält.\\
+        \textit{Schritt 5}. Jetzt zeigen wir, dass $v(A) = \int_{A} f\,\mathrm{d}\mu$ für alle $A \in \mathcal{A}$ gilt. Wir nehmen an, dass $v(A) \geq \int_{A} f\,\mathrm{d}\mu$ ist  
+        und somit  
+        \[\tau(A) = v(A) - \int_A f\,\mathrm{d}\mu, \quad \forall A \in \mathcal{A}\]
+        ein endliches Maß existiert. Zu zeigen ist $\tau = 0$.\\ 
+        Angenommen, es gilt $\tau(\Omega) > 0$. Da $\mu$ als endlich vorausgesetzt wurde, finden wir ein $\underline{\varepsilon > 0}$ mit
+        \[\tau(\Omega) > \varepsilon \mu(\Omega).\]
+        Sei $(\Omega^{+}, \Omega^{-})$ eine Hahn-Zerlegung des signierten Maß $\tau(\Omega) - \varepsilon \mu(\Omega)$. Dann erhalten wir 
+        \[\tau(A) \geq \tau(A \cap \Omega^{+}) \geq \varepsilon \mu(A \cap \Omega^{+})\]
+        für alle $A \in \mathcal{A}$. Dann existiert eine Funktion $f_0 = f + \varepsilon \mu(\Omega^{+})$ und daher bei beliebigem $A \in \mathcal{A}$ gilt 
+        \begin{align*}
+            \int_A f_0\,\mathrm{d}\mu &= \int_A f\,\mathrm{d}\mu + \varepsilon \mu(A \cap \Omega^{+})\\
+            &\leq \int_A f\,\mathrm{d}\mu + \tau(A \cap \Omega^{+})\\
+            &\leq \int_A f\,\mathrm{d}\tau(A)\\
+            &=v(A).
+        \end{align*}
+        Dann liegt die Funktion $f_0$ auch in $\mathfrak{G}$. Wegen $\int f\,\mathrm{d}\mu = \alpha$ und der Definition der $\alpha$ muss auch 
+        \[\int f_0\,\mathrm{d}\mu = \alpha,\]
+        woraus 
+        \[\mu(\Omega^{+}) =0\]
+        sein. Wegen $v \ll \mu$ impliziert $v(\Omega^{+}) =0$ und foglich $\tau(\Omega^{+}) =0$. \footnote{Wir merken an, dass dies die einzige Stelle im Beweis ist, an der die Absolutstetigkeit des Maßes $v$ 
+        bezüglich $\mu$ benutzt wird.} Deshalb erhatlen wir 
+        \begin{align*}
+            \tau(\Omega) - \varepsilon \mu(\Omega) &= (\tau - \varepsilon)(\Omega^{+}) + (\tau - \varepsilon)(\Omega^-)\\
+            &= (\tau - \varepsilon)(\Omega^{-}) \leq 0
+        \end{align*}
+        Jedoch ist es Widerspruch an Definition der $\varepsilon$. 
+        \textit{Schritt 6}. Es ist noch die Einzigkeit der Radon-Nikodym-Ableitung nachzuweisen. Seien $f$ und $g$ nichtnegative $\mathcal{A}$-messbare Funktionen mit 
+        \[\int_A f\,\mathrm{d}\mu = \int_A g\,\mathrm{d}\mu < \infty\]
+        für alle $A \in \mathcal{A}$. Es ist zu zeigen, dass hieraus $f = g$ $mu$-fast überall ist. Setzen wir $A= \{f \geq g\}$ und nun zeigen wir, dass $\mu(A) =0$. Wegen $f$ und $g$ die $\mathcal{A}$-messbare Funktionen, 
+        erhalten wir $\mathbbm{1}_A (f-g)$ auch eine $\mathcal{A}$-messbare Funktion, dann gilt 
+        \[\int \mathbbm{1}_A (f-g)\,\mathrm{d}\mu = \int_A (f-g)\,\mathrm{d}\mu = \int_A f\,\mathrm{d}\mu - \int_A g\,\mathrm{d}\mu = 0.\]
+        Mit der \cref{lem:6} folgt $\mu(A) =0$ und dann ist $f \geq g$ $\mu$-f.ü. Analog zeigt man $f \leq g$ $\mu$-f.ü.\\
+        \textit{Fall 2}. Wir betrachten, dass $\mu$ und $v$ $\sigma$-endlich sind.\\
+        \textit{Schritt 1}. Wir möchten eine Doppelfolge $(B_n)_{n \in \mathbb{N}} = (C_l \cap D_m)_{l, m \in \mathbb{N}}$ mit paarweise disjunkter Mengen zu konstruieren.\\
+        Zurest betrachten wir $\mu$ und $v$ $\sigma$-endliche Maße auf $\mathcal{A}$, und seien die Folgen $(C_n)_{n \in \mathbb{N}}$ und $(D_n)_{n \in \mathbb{N}}$ paarweise disjunkter Mengen aus $\mathcal{A}$ mit 
+        $\Omega = \bigcup_{n=1}^\infty C_n = \bigcup_{n=1}^\infty D_n$ und $\mu(C_n) < \infty$ und $v(D_n) < \infty$. Dann gilt es  
+        \[C_n = C_n \cap \Omega = C_n \cap (\bigcup_{n=1}^\infty D_n) = \bigcup_{n=1}^\infty C_n \cap D_n,\]
+        und somit 
+        \[\Omega = \bigcup_{n=1}^\infty C_n = \bigcup_{n=1}^\infty (C_n \cap D_n).\]
+        Sezten wir $(B_n)_{n \in \mathbb{N}}$ die Aufzählung der Elementen auf dolppelfolge $(C_l \cap D_m)_{l, m \in \mathbb{N}}$. Dann ist $(B_n)_{n \in \mathbb{N}}$ auch eine Folge mit paarweise disjunkter Elementen aus $\mathcal{A}$.\\
+        \textit{Schritt 2}. Setzen wir $\mu_n, v_n$ nichtnegative Maße $\mathcal{A} \rightarrow \mathbb{R}^{+}$ für jedes $n \in \mathbb{N}$ mit $\mu_n(A) = \mu(A \cap B_n) \leq \mu(B_n) < \infty$ und $v_n(A) = v(A \cap B_n) \leq v(B_n) < \infty$, so dass $\mu_n$ und $v_n$ endliche sind.
+        Wir zeigen, dass $v_n \ll \mu_n$ ist. Ist $v_n(A) =0$, so ist $v(A \cap B_n) =0$, und wegen $v \ll \mu$, folgt $\mu(A \cap B_n) =0$ und $\mu_n(A)=0$, und damit $v_n \ll \mu_n$.\\
+        \textit{Schritt 3}. Ist $A \in \mathcal{A}$ eine $\mu$-messbare Menge und $B_n \in \mathcal{A}$, und damit $A \cap B_n$ auch in $\mathcal{A}$ enthält. Folglich ist $A \cap B_n$ $\mu$-messbar und auch $\mu_n$-messbar.
+        Jetzt erfüllt es die Voraussetzung der \cref{satz:6}, und existiert es eine Folge der nichtnegativen $\mu_n$-messbaren Funktionen $(f_n)_{n \in \mathbb{N}}$, so dass 
+        \[v_n = \int_A f_n\,\mathrm{d}\mu_n\]
+        für alle $\mu_n$-messbare Menge $A \in \mathcal{A}$. Definieren wir $f$ eine nichtnegative $\mu$-messbare Funktion durch $f(x) = \sum_{n=1}^\infty f_n(x)\mathbbm{1}_{B_n}$ für alle $x \in B_n$. Dann wir zeigen, dass 
+        \[v(A) = \int_A f\,\mathrm{d}\mu\]
+        für jedem $A \in \mathcal{A}$. Sei $A \in \mathcal{A}$ mit $v(A) < \infty$. Wegen $B_n$ paarweise disjunkt ist, folgt $A \cap B_n$ paarweise disjunkt. Dann gilt 
+        \begin{align*}
+            v(A) &= v(A \cap \Omega)= v\bigl(A \cap \bigcup_{n \in \mathbb{N}} B_n \bigr) = v\bigl(\bigcup_{n \in \mathbb{N}} (A \cap B_n)\bigr)\\
+            &= \sum_{n \in \mathbb{N}} v(A \cap B_n) = \sum_{n \in \mathbb{N}} v_n(A)\\
+            &= \sum_{n \in \mathbb{N}} \int_A f_n\,\mathrm{d}\mu_n = \sum_{n \in \mathbb{N}} \int_{A \cap B_n} f_n\,\mathrm{d}\mu \quad \bigstar\\
+            &= \int_A \bigl(\sum_{n=1}^\infty f_n \cdot \mathbbm{1}_{B_n}\bigl)\,\mathrm{d}\mu\\
+            &= \int_A f\,\mathrm{d}\mu
+        \end{align*}
+        \textit{Schritt 5}. Wir müssen die Gleichung $\bigstar$ beweisen, d.h. 
+        \[\forall A \in \mathcal{A}, \int_A f\,\mathrm{d}\mu_n = \int_{A \cap B_n} f\,\mathrm{d}\mu.\]
+        Setzen wir eine Elementarfunktion $s = \sum_{n=1}^m \alpha_n \cdot \mathbbm{1}_{A_n}$ für beliebige $A_n \in \mathcal{A}$ und 
+        \[\int_A f\,\mathrm{d}\mu_n = \sup \bigl\{\int_A s\,\mathrm{d}\mu_n \bigl|\, 0 \leq f \leq f\bigr\}\]
+        \[\int_{A \cap B_n} f\,\mathrm{d}\mu =\sup \Bigl\{\int_{A \cap B_n} s\,\mathrm{d}\mu\bigl|\, 0 \leq s \leq f\Bigr\}\]
+        für alle $A \in \mathcal{A}$. 
+        Sei jede $A_n \in \mathcal{A}$, und somit gilt 
+        \begin{align*} 
+            \int_A s\,\mathrm{d}\mu_n &= \sum_{n=1}^m \alpha_n \cdot \mu_n(A \cap A_n)\\
+            &= \sum_{n=1}^m \alpha_n \cdot \mu(A \cap A_n \cap B_n)\\
+            &= \int_{A \cap B_n} s\,\mathrm{d}\mu
+        \end{align*}
+        Dann folgt 
+        \[\int_A f\,\mathrm{d}\mu_n = \int_{A \cap B_n} f\,\mathrm{d}\mu.\]
+        \textit{Schritt 6}. Wir müssen noch die Eindeutigkeit nachweisen. Es gibt $g$ eine nichtnegative, $\mathcal{A}$-messbare Funktion mit 
+        \[\forall A \in \mathcal{A}, v(A) = \int_A g\,\mathrm{d}\mu,\]
+        und somit gilt
+        \begin{align*}
+            \int_A f\,\mathrm{d}\mu_n &= \int_{A \cap B_n} f\,\mathrm{d}\mu\\
+            &= v(A \cap B_n)\\
+            &= \int_{A \cap B_n} g\,\mathrm{d}\mu\\
+            &= \int_A g\,\mathrm{d}\mu_m.
+        \end{align*}
+        Es folgt $f = g$ $\mu_n$-fast überall, wegen $\mu_n$ und $v_n$ endlich sind, wie wir in \textit{Fall 1} bewiesen. 
+        Es gibt eine Menge $A = \{f \neq g\}$ und zeigen wir, dass $\mu(A) = 0$ ist. Wegen $\mu_n(A) =0$, erhalten wir 
+        \begin{align*} 
+            \mu(A) &= \mu(A \cap \Omega)= \mu \bigl(A \cap \bigl(\bigcup_{n \in \mathbb{N}} B_n\bigr))\bigr)= \mu \bigl(\bigcup_{n \in \mathbb{N}} (A \cap B_n)\bigr)\\
+            &= \sum_{n \in \mathbb{N}} \mu_n(A)\\
+            &= \sum_{n \in \mathbb{N}} 0\\
+                   &=0,        
+        \end{align*}
+        so dass $f=g$ $\mu$-f.ü. gilt. 
+    \end{proof}
+    Sehr mühsam!
+    \begin{theorem}[Zerlegungssatz von Lesbegue]\label{satz:7}
+        Sind $\mu$ und $v$ $\sigma$-endliche Maße auf $(\Omega, \mathcal{A})$, so läßt sich genau eine Weise in der Form 
+        $v = v_1 + v_2$ mit Maßen $v_1$ und $v_2$ auf $\mathcal{A}$ darstellen, wobei $v_1 \ll \mu$ und $v_2 \bot \mu$ gilt.
+      \end{theorem}      
+\end{document}
