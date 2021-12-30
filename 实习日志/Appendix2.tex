@@ -1,0 +1,120 @@
+\documentclass[H:\workspace\实习日志\ShixiRizhi.tex]{subfiles}
+\begin{document}
+\section{关于数据库的一些认识}\label{appendix:b}
+\subsection{背景介绍}
+业务部每天查询、调用大量数据，有些是很常用的，比如某市的经济指标、人口，或者全国城投的评级，等等，
+但我们做业务的，每次都是专用专取，缺乏常用数据的保存与分组，这样不仅会因为“重复劳动”而效率低下，
+另外，不同的数据来源很容易导致查询到的数据缺乏真实性，而验证数据会添加更多的不确定性因素。还有一点，
+由于我们以往做过的业务太多，缺少对已完成和、正在做的项目的统计。我不是让大家增加负担，但缺少已完成的项目的信息，
+当我们面对一个新的项目时，我们不确定是否已经做过，也就意味着，不确定是否有可以借鉴的资料，
+而对于正在做的项目，我们会容易遗忘许多细节，比如担保公司的名称、项目进度，等等。小的细节不关注，会导致更多的麻烦，
+学会整理并保存数据，是我们上学时学的第一课，事实证明，这很有意义。因此，基于以上几个原因，我决定为组里建立一个简单可用、
+容易维护的数据库。\par 
+数据库于2021年11月16日开始搭建，经过将近两个星期的摸索与学习，我已经掌握了使用 \textbf{MySQL} 与 \textbf{Oracle} 的方法，
+经过思考并询问一些程序员，我使用 MySQL 搭建数据库，原因有三: 
+\begin{itemize}
+    \item MySQL 是免费、开源的，而 Oracle 要收费；
+    \item MySQL 目前使用人数最多，有许多模板、资料可以借鉴、学习；
+    \item 相对 Oracle，MySQL 更容易学习与维护。
+\end{itemize} 
+
+\subsection{数据库介绍}
+已建立江苏省区县数据库，包含一个主表，数据，和几个子表，包含
+\begin{itemize}
+    \item cxustomerinfo\footnote{一些已有的资料汇总}；
+    \item 全国城投评级；
+    \item （国家示范）农业园；
+    \item 国家示范产业园；
+    \item （江苏省各个区县）基本信息；
+    \item 小镇；
+    \item 已投放客户；
+    \item （江苏省各个区县）数据；
+    \item （数据）汇总；
+    \item 物流园；
+    \item 省级示范园；
+    \item 示范县；
+    \item 示范点；
+\end{itemize}
+
+已建立 登记详细信息列表，包含一个主表，应收账款质押，和三个子表，
+\begin{itemize}
+    \item 应收账款{\_}质权人；
+    \item 应收账款质押；
+    \item 应收账款质押{\_}出质人；
+    \item 应收账款质押{\_}合同；
+\end{itemize}
+
+\subsection{未完成的项目}
+对于\uwave{登记详细信息列表}，计划采用雪花结构，需要对应收账款、应收账款（保理）和
+融资租赁三表进行分表操作，每个表再新建子表，包含质权人、出质人与合同，
+用\uwave{应收账款}中的 “序号” 做 foreign key，让这三个表产生联系。再新建立一个 fact table，保留 “序号”。\par 
+
+还需要再建立一个新数据库，用来存放财务数据。采用 star schema，也就是说，fact table 保留 
+“资产负债表{\_}id”，“利润表{\_}id”，“现金流表{\_}id”，“指标{\_}id”。dimension tables 包括\uwave{资产负债表}、
+\uwave{利润表}、\uwave{现金流表}与\uwave{指标}。每个表都建立一个 id 做主键，与 fact table 匹配。
+\uwave{资产负债表}至少应包含列 “流动资产总计”、“非流动资产总计”、“流动负债总计”、“非流动负债总计” 与 “所有者权益总计”，还有 “时间”。
+\uwave{利润表}至少应包含列 “总收入”、“总成本”、“利润总额” 与 “时间”。\uwave{现金流表}至少应包含 “经营活动的现金流量
+净额”、“投资活动的现金流量净额” 与 “筹资活动产生的现金流量净额” 与 “时间"。\uwave{指标}应当对不同的财务指标
+进行分类，至少应该包含 “偿债能力”、“盈利能力” 和 “运营能力" 与 “时间”。\par 
+
+不需要将财务数据按年份分别建表，连表查询的代码量会很大。\par 
+
+关于表的设计与维护，可以参照 \href{https://developer.aliyun.com/topic/java20}{阿里巴巴Java开发手册-2021最新嵩山版}，
+其中有对于 MySQL的写法说明。如果你有更好的设计，也可以尝试一下，不要在这个数据库的建立与维护上不花心思，
+这个是值得的。目前，这家公司没有相应的氛围，如果没有人支持，也可以放弃，在愤怒时，可以输入以下代码
+\begin{lstlisting}[language=C,style=mystyle]
+    sudo rm -rf/ 
+\end{lstlisting}
+
+然后开始新的生活。
+最后，我是要跑路了，祝后来者身体健康。
+
+\subsection{一些关于 MySQL 的认识}
+这一部分是为了写给那些没有 SQL 基础的人，让他们对查询数据有一个基本的认识。\par 
+
+首先是连接 MySQL 服务器。
+\lstset{style=mystyle,language=SQL}
+\begin{lstlisting}
+    mysql -u root -p
+    Enter password: hwrz@8888 
+\end{lstlisting}
+
+如果登录成功，会出现 \colorbox{lightgray}{mysql>} 命令提示窗口，你可以在上面执行任何 SQL 语句。
+\begin{lstlisting}
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
+    Your MySQL connection id is 9
+    Server version: 8.0.27 MySQL Community Server - GPL
+    
+    Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+    
+    Oracle is a registered trademark of Oracle Corporation and/or its
+    affiliates. Other names may be trademarks of their respective
+    owners.
+    
+    Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+    
+    mysql> select column /* 需要查询的列 */
+    from table /* 需要查询的表 */
+    where column = ... /* 额外的限制条件 */
+    order by column asc/desc; /* 对某一列进行排序，正序用 asc，倒序用 desc */
+\end{lstlisting}
+
+如果想查询两个表中的数据，可以用以下命令
+\begin{lstlisting}
+    /* 选择需要查询的数据 */
+    select col1, col2 from table a
+    /* 
+    用 join 语句联合两个表 */
+    join table b
+    /* 
+    让两张表中的某列数据相联 */
+    on a.id = b.id
+    /* 
+    如果有更进一步的限制 */
+    where columnname = ...
+    /* 
+    如果想对查询数据进行排序 */
+    order by columnname asc/desc;
+\end{lstlisting}
+联表的方式有许多种，join 语句指的是同时历遍两张表的所有数据。
+\end{document}
