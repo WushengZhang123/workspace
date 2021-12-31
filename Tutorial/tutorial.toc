@@ -1,0 +1,5 @@
+\babel@toc {english}{}\relax 
+\beamer@sectionintoc {1}{Review of Differentiation and Integration}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Review of Differentiation}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Review of Integration}{7}{0}{1}
+\beamer@sectionintoc {2}{Formula of Integration by Parts}{14}{0}{2}
