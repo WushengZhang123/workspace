@@ -1,3 +1,0 @@
-\selectlanguage *[babelshorthands=true]{german}
-\contentsline {section}{\numberline {1}Signierte Maße}{2}{section.1}%
-\contentsline {section}{\numberline {2}Maß mit Dichten- Satz von Radon-Niodym}{7}{section.2}%
