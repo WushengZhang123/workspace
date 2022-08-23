@@ -1,5 +1,0 @@
-\contentsline {section}{\numberline {1}第一段}{2}{section.1}%
-\contentsline {section}{\numberline {2}第二段}{5}{section.2}%
-\contentsline {subsection}{\numberline {2.1}一篇文章}{5}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}二篇文章}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}乱七八糟}{6}{subsection.2.3}%
