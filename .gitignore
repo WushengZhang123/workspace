@@ -9,3 +9,10 @@ node_modules
 
 # Ignore SASS config files
 .sass-cache
+
+# Ignore all tex extension files
+.aux 
+.log
+.synctex.gz
+.out
+.toc
